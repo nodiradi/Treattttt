@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Something for Adi</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, #313b70 0%, transparent 35%),
+    radial-gradient(circle at 80% 80%, #513b70 0%, transparent 35%),
+    #101426;
+  color: #f4edf9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  color: white;
+  opacity: .5;
+  animation: twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%,100% { opacity: .15; transform: scale(.8); }
+  50% { opacity: .85; transform: scale(1.2); }
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 36px 26px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.055);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.25);
+}
+
+.small-title {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: #bdb3e9;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+p {
+  color: #d5cfe6;
+  line-height: 1.9;
+  font-size: 14px;
+}
+
+.envelope {
+  font-size: 66px;
+  margin: 20px 0;
+  filter: drop-shadow(0 0 20px #b7a4ff55);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+button {
+  font-family: inherit;
+  border: 1px solid rgba(255,255,255,.2);
+  padding: 13px 23px;
+  border-radius: 40px;
+  color: white;
+  background: linear-gradient(135deg,#8274bc,#a78bbd);
+  cursor: pointer;
+  margin-top: 25px;
+  transition: .3s;
+  box-shadow: 0 5px 25px #a78bbd33;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px #a78bbd55;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#letter {
+  animation: reveal .9s ease;
+}
+
+.letter-text {
+  text-align: left;
+  margin-top: 22px;
+  padding: 23px 20px;
+  border-radius: 20px;
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.letter-text p {
+  margin-bottom: 15px;
+}
+
+.signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #c8b7f2;
+  text-align: right;
+  margin-top: 22px;
+}
+
+#secret {
+  margin-top: 22px;
+  padding: 22px;
+  border-radius: 18px;
+  background: rgba(174,148,226,.1);
+  border: 1px solid rgba(190,170,255,.2);
+  animation: reveal 1s ease;
+}
+
+#secret h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  margin-bottom: 13px;
+  color: #e6d7ff;
+}
+
+.final {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  margin-top: 15px;
+  color: #e5d5ff;
+}
+
+.footer {
+  margin-top: 25px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #8e89a9;
+}
+
+#musicBtn {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  margin: 0;
+  z-index: 10;
+  padding: 10px 16px;
+  font-size: 12px;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="song.mp3 .mpeg" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">♫ Play music</button>
+
+<div class="stars" id="stars"></div>
+
+<div class="card">
+
+  <div id="intro">
+    <div class="small-title">a little pause from everything</div>
+
+    <div class="envelope">✉️</div>
+
+    <h1>Something for you.</h1>
+
+    <p>
+      No big occasion.<br>
+      Just a little something to make your day.
+    </p>
+
+    <button onclick="openLetter()">Open this letter ✦</button>
+  </div>
+
+  <div id="letter" class="hidden">
+
+    <div class="small-title">a little note for adi</div>
+
+    <h1>Hey, you.</h1>
+
+    <div class="letter-text">
+
+      <p>
+        Your first semester has officially begun, and you've already
+        completed your very first exam. And hearing that you did well
+        genuinely made me happy. I hope this is just the beginning
+        of many little victories waiting for you.
+      </p>
+
+      <p>
+        One little milestone down, and many more to go.
+      </p>
+
+      <p>
+        You are doing your best, and that is enough. You are enough.
+      </p>
+
+      <p>
+        You are learning, growing, figuring things out,
+        and that's something worth celebrating.
+      </p>
+
+      <p>
+        So here's your little reward for making it through.
+        Take a breath. Rest a little. You deserve that.
+      </p>
+
+      <div class="signature">
+        Proud of you, always. ✨
+      </div>
+
+    </div>
+
+    <button onclick="showSecret()">There's one more thing...</button>
+
+    <div id="secret" class="hidden">
+
+      <h2>Congratulations, university boy! 🌙</h2>
+
+      <p>
+        You have successfully unlocked:
+      </p>
+
+      <p style="margin-top:12px">
+        ✦ One free appreciation session<br>
+        ✦ Unlimited complaints about exams<br>
+        ✦ Permission to be lazy for a while<br>
+        ✦ And one person quietly wishing you well
+      </p>
+
+      <div class="final">
+        May all the things you're working for<br>
+        find their way to you.
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer">MADE WITH A LITTLE THOUGHT ♡</div>
+
+</div>
+
+<script>
+
+// Music
+const music = document.getElementById("bgMusic");
+const musicBtn = document.getElementById("musicBtn");
+
+function startMusic() {
+  music.play().then(() => {
+    musicBtn.innerHTML = "♫ Pause music";
+  }).catch(() => {
+    musicBtn.innerHTML = "♫ Play music";
+  });
+}
+
+function toggleMusic() {
+  if (music.paused) {
+    startMusic();
+  } else {
+    music.pause();
+    musicBtn.innerHTML = "♫ Play music";
+  }
+}
+
+// Stars
+const starBox = document.getElementById("stars");
+
+for (let i = 0; i < 45; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.innerHTML = "✦";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.fontSize = (Math.random() * 10 + 5) + "px";
+  star.style.animationDelay = Math.random() * 4 + "s";
+  starBox.appendChild(star);
+}
+
+// Open letter
+function openLetter() {
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("letter").classList.remove("hidden");
+  startMusic();
+}
+
+// Reveal surprise
+function showSecret() {
+  const surprise = document.getElementById("secret");
+  surprise.classList.remove("hidden");
+
+  surprise.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+</script>
+
+</body>
+</html>
